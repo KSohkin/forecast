@@ -1,3 +1,4 @@
+//andmete päring
 async function fetchData(apiUrl, location) {
     try {
       const response = await fetch(apiUrl);
@@ -8,6 +9,7 @@ async function fetchData(apiUrl, location) {
     }
   }
   
+  //Andmete kuvamine
   function displayWeatherData(data, location) {
     const weatherContainer = document.getElementById('weatherContainer');
     const locationHeader = document.createElement('h2');
@@ -16,8 +18,9 @@ async function fetchData(apiUrl, location) {
   
     // Group data by date
     const groupedData = groupDataByDate(data.hourly.time, data.hourly.temperature_2m);
+    const limitedDates = Object.keys(groupedData).slice(0, 3);
   
-    for (const date in groupedData) {
+    for (const date of limitedDates) {
       const dateHeader = document.createElement('h3');
       dateHeader.textContent = date;
       weatherContainer.appendChild(dateHeader);
